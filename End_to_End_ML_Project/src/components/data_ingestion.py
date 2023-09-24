@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from src.exception import CustomException
 from src.logger import logging
+from src.components.data_transformation import DataTransformation, DataTransformationConfig
 
 @dataclass #decorator (use only if you want to define variables in class without init)
 #(if you have functions in class use normall init style no decorator)
@@ -20,7 +21,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the data_ingestion method or component")
         try:
-            df=pd.read_csv('notebooks/data/stud.csv')
+            df=pd.read_csv('End_to_End_ML_Project/notebooks/data/stud.csv')
             logging.info('Reading data as dataframe completed')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
@@ -45,4 +46,6 @@ class DataIngestion:
         
 if __name__=='__main__':
     obj=DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data_path,test_data_path=obj.initiate_data_ingestion()
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data_path,test_data_path)

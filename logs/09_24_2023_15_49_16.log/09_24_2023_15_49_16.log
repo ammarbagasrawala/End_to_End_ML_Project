@@ -1,0 +1,2 @@
+[ 2023-09-24 15:49:16,807 ] 22 root - INFO - Entered the data_ingestion method or component
+[ 2023-09-24 15:49:16,808 ] 44 root - INFO - [Errno 2] No such file or directory: 'notebooks/data/stud.csv'
